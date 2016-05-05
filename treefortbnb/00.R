@@ -129,11 +129,17 @@ opts <- list(
   choroLegend = list(show = FALSE),
   bivariateLegend = list(show = TRUE, var1Label = "Units", var2Label = "Median Price")
 )
+
 dmaps("us_states", data = d,
+             groupCol = "group",
+             regionCols = "state",
+             opts = opts)
+
+map <- dmaps("us_states", data = d,
       groupCol = "group",
       regionCols = "state",
       opts = opts)
-
+saveWidget(map,"map.html")
 
 
 
