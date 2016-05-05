@@ -1,0 +1,18 @@
+{
+    "contents" : "library(reshape2)\n\nremoveNotes <- function(x){\n  gsub( \" *\\\\[.*?\\\\] *\", \"\", x)\n}\n\nremoveAccents <- function(string){\n  accents <- \"àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝäëïöüÄËÏÖÜâêîôûÂÊÎÔÛñÑç\"\n  translation <- \"aeiouAEIOUaeiouyAEIOUYaeiouAEIOUaeiouAEIOUnNc\"\n  chartr(accents, translation, string)\n}\n\ntrim_spaces <- function (x){\n  x <- gsub(\"\\\\s+\", \" \", x)\n  gsub(\"^\\\\s+|\\\\s+$\", \"\", x)\n}\n\n# dictionaryMatch <- function(inputStr,dict, empty=c(\"\")){\n#   dict <- unique(dict)\n#   l <- lapply(inputStr, function(inputStr){\n#     if(inputStr %in% empty){return(empty[1])}\n#     inputStr <- tolower(inputStr)\n#     inputStr <- removeAccents(inputStr)\n#     dict_tmp <- tolower(dict)\n#     dict_tmp <- removeAccents(dict_tmp)\n#     tmp <- adist(inputStr, dict_tmp)\n#     tmp <- as.vector(tmp)\n#     dict[which.min(tmp)]\n#   })\n#   unlist(l)\n# }\n\n\ndictionaryMatch <- function(inputStr,dict, empty=c(\"\"),maxDistance = 10){\n  dict[is.na(dict)] <- \"\"\n  l <- strsplit(paste(dict$name,dict$alternativeNames,sep=\"|\"),\"|\",fixed = TRUE)\n  names(l) <- paste0(seq_along(l),\"_\")\n  nm <- unlist(l)\n  id <- gsub(\"_[1-9]*\",\"\",names(nm))\n  l <- data.frame(id = id,name = nm, stringsAsFactors = FALSE)\n  l$id <- as.numeric(l$id)\n  ids <- lapply(inputStr, function(str){\n    #str <- \"North Miami Beac - FL\"\n    #str <- \"Portland - OR\"\n    if(str %in% empty){return(empty[1])}\n    str <- tolower(str)\n    str <- removeAccents(str)\n    dict_tmp <- tolower(l$name)\n    dict_tmp <- removeAccents(dict_tmp)\n    tmp <- adist(str, dict_tmp)\n    tmp <- as.vector(tmp)\n    if(min(tmp) > maxDistance){\n      out <- NA\n    }else{\n      index <- l$id[which.min(tmp)]\n      #index <- which.min(tmp)\n      #l$name[index]\n      out <- as.character(dict$name[index])\n    }\n    out\n  })\n  ids <- unlist(ids)\n  #dict$name[ids]\n  ids\n}\n\n# idx <- match(x,codes$name)\n# codes$id[idx]\n\n\n\n\n",
+    "created" : 1462391728633.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "594011565",
+    "id" : "DA509DE9",
+    "lastKnownWriteTime" : 1462404163,
+    "path" : "~/jprepo/playground/treefortbnb/str_helpers.R",
+    "project_path" : "str_helpers.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

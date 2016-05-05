@@ -1,0 +1,18 @@
+{
+    "contents" : "\n\nlibrary(rvest)\n\ngetWikipediaTable <- function(url,n = 1){\n  tables <- url %>%\n    read_html() %>%\n    html_nodes('.wikitable') %>%\n    html_table()\n  table <- tables[[n]]\n  table\n}\n\nremoveNotes <- function(x){\n  gsub( \" *\\\\[.*?\\\\] *\", \"\", x)\n}\n\n\n\n\n",
+    "created" : 1462390900367.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "963568146",
+    "id" : "BFE11BCD",
+    "lastKnownWriteTime" : 1462391629,
+    "path" : "~/jprepo/playground/treefortbnb/scrape_helpers.R",
+    "project_path" : "scrape_helpers.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

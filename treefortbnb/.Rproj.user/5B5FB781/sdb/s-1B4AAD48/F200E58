@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1462403179194.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F200E58",
+    "lastKnownWriteTime" : 4609013760,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "davwikd3q4",
+        "caption" : "dict",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dict&cache_key=davwikd3q4",
+        "displayedObservations" : 25818,
+        "environment" : "",
+        "object" : "dict",
+        "totalObservations" : 25818,
+        "variables" : 2
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
